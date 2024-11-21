@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CETE Quiz Game</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header">
+        <img src="..\cete-logo.png" alt="CETE Logo">
+        <div id="header-title">COLLEGE OF ENGINEERING AND TECHNOLOGY EDUCATION</div>
+        <img src="..\htc.png" alt="HTC Logo">
+    </div>
+
+    <div id="quiz-container">
+        <div id="question-container">
+            <div id="question"></div>
+            <div id="countdown">10</div>
+        </div>
+        <div id="answer-container">
+            <div id="answer"></div>
+            <button id="won-btn" style="display:none;">Won</button>
+            <button id="lose-btn" style="display:none;">Lose</button>
+        </div>
+    </div>
+
+    <div id="input-container">
+        <div id="title">Quiz Game</div>
+        <div id="subtitle">Direction: Please Choose one from number 1 to 50.</div>
+        <input type="number" id="number-input" placeholder="1-50">
+        <button id="submit-btn">Submit</button>
+    </div>
+
+    <div id="carera">WELCOME VISITORS <i>to</i><div></div> HTC OPEN HOUSE 2024</div>
+
+    <!-- Modal for error message -->
+    <div id="error-modal" class="modal">
+        <div class="modal-content">
+            <p>Please enter a number between 1 and 50.</p>
+            <!-- Custom Close button using the same styles as the buttons in your CSS -->
+            <button class="close-btn" id="close-modal-btn">Close</button>
+        </div>
+    </div>
+
+    <script src="../qanda.js"></script>
+
+    <script>
+        // Get modal and close button
+        const modal = document.getElementById("error-modal");
+        const closeBtn = document.getElementById("close-modal-btn");
+
+        // Submit button event listener
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            const numberInput = document.getElementById('number-input');
+            const numberValue = parseInt(numberInput.value, 10);
+
+            // Check if the number is valid
+            if (isNaN(numberValue) || numberValue < 1 || numberValue > 50) {
+                modal.style.display = "block"; // Show the modal if the input is invalid
+            } else {
+                modal.style.display = "none"; // Hide the modal if valid
+                // Here you can add your code to fetch and display the question and answer based on the number
+                const index = numberValue - 1; // Index starts from 0, so subtract 1
+                if (index < questionsAndAnswers.length && index >= 0) {
+                    const selectedQA = questionsAndAnswers[index];
+
+                    // Display the question and answer
+                    document.getElementById('question').textContent = selectedQA.questionText;
+                    document.getElementById('answer').textContent = selectedQA.answer;
+
+                    // Optionally, show the buttons
+                    document.getElementById('won-btn').style.display = "inline-block";
+                    document.getElementById('lose-btn').style.display = "inline-block";
+                }
+            }
+        });
+
+        // Close button functionality for the modal
+        closeBtn.onclick = function() {
+            // Reset the input field
+            document.getElementById('number-input').value = "";
+            modal.style.display = "none"; // Close the modal
+        }
+
+        // Close the modal when the user clicks anywhere outside of the modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

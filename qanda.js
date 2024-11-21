@@ -25,16 +25,16 @@ const originalQuestions = [
     { questionText: "Which app is used for sending instant messages?", answer: "Messenger" },
 
     // Tech Logos (10 questions)
-   { questionText: "Guess the logo:", answer: "Microsoft Excel", image: "logo/Microsoft Excel.png" },
-   { questionText: "Guess the logo:", answer: "Microsoft Windows", image: "logo/Microsoft windows.png" },
-   { questionText: "Guess the logo:", answer: "Microsoft Azure", image: "logo/Microsoft_Azure.png" },
-   { questionText: "Guess the logo:", answer: "ChatGPT", image: "logo/ChatGPT.png" },
-   { questionText: "Guess the logo:", answer: "YouTube", image: "logo/YouTube.jpg" },
-   { questionText: "Guess the logo:", answer: "Google", image: "logo/Google.png" },
-   { questionText: "Guess the logo:", answer: "Bing AI", image: "logo/Bing AI.png" },
-   { questionText: "Guess the logo:", answer: "Google Meet", image: "logo/Google Meet.png" },
-   { questionText: "Guess the logo:", answer: "Google Play or Google Playstore", image: "logo/Google Play or Google Playstore.png" },
-   { questionText: "Guess the logo:", answer: "Google Settings", image: "logo/Google Settings.png" },
+    { questionText: "Guess the logo:", answer: "Microsoft Excel", image: "../logo/Microsoft Excel.png" },
+    { questionText: "Guess the logo:", answer: "Microsoft Windows", image: "../logo/Microsoft windows.png" },
+    { questionText: "Guess the logo:", answer: "Microsoft Azure", image: "../logo/Microsoft_Azure.png" },
+    { questionText: "Guess the logo:", answer: "ChatGPT", image: "../logo/ChatGPT.png" },
+    { questionText: "Guess the logo:", answer: "YouTube", image: "../logo/YouTube.jpg" },
+    { questionText: "Guess the logo:", answer: "Google", image: "../logo/Google.png" },
+    { questionText: "Guess the logo:", answer: "Bing AI", image: "../logo/Bing AI.png" },
+    { questionText: "Guess the logo:", answer: "Google Meet", image: "../logo/Google Meet.png" },
+    { questionText: "Guess the logo:", answer: "Google Play or Google Playstore", image: "../logo/Google Play or Google Playstore.png" },
+    { questionText: "Guess the logo:", answer: "Google Settings", image: "../logo/Google Settings.png" },
 
     // Computer Keyboard Shortcuts (5 questions)
     { questionText: "What does Ctrl + C do?", answer: "Copy" },
@@ -103,7 +103,12 @@ const showQuestion = (question) => {
             <div style="text-align: center;">
                 <p>${question.questionText}</p>
                 <div style="background-color: white; padding: 20px; border-radius: 10px; display: inline-block;">
-                    <img src="${question.image}" alt="Logo" style="width: 150px; height: 150px; object-fit: contain;">
+                    <img 
+                        src="${question.image}" 
+                        alt="Logo" 
+                        style="width: 150px; height: 150px; object-fit: contain;" 
+                        onerror="this.src='logo/default.png';"
+                    >
                 </div>
             </div>`;
     } else {
@@ -141,9 +146,7 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
         showQuestion(question);
         await countdown(10);  
         showAnswer(question.answer);
-    } else {
-        alert("Invalid choice. Please choose a number between 1 and 50.");
-    }
+    } 
 });
 
 document.getElementById('won-btn').addEventListener('click', () => {
