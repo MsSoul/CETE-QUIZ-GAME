@@ -1,0 +1,308 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystery Gift Box</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #FF6347, #228B22); /* Christmas red and green */
+    color: white; /* Changed to white for better contrast with the background */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+        .js-container {
+            position: relative;
+            width: 80%;
+            max-width: 900px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .mystery-box {
+            padding: 20px;
+            z-index: 11;
+        }
+
+        .title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: black;
+            z-index: 100;
+            position: relative;
+            font-family: 'Chewy', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .choices {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            z-index: 11;
+        }
+
+        .choice {
+            position: relative;
+            width: 100px;
+            height: 150px;
+            background-color: orange;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            z-index: 11;
+        }
+
+        .choice .lid {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 30%;
+            background-color: darkorange;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .choice .ribbon-horizontal {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background-color: red;
+        }
+
+        .choice .ribbon-vertical {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 15px;
+            height: 100%;
+            background-color: red;
+        }
+
+        .choice img {
+            width: 100%; /* Match the width of the box */
+            height: auto; /* Maintain aspect ratio */
+            object-fit: contain; /* Ensure the image fits within the box without cropping */
+            display: none; /* Initially hidden */
+            border-radius: 5px; /* Match the box's rounded corners */
+            padding: 5px; /* Add slight padding for better alignment */
+        }
+
+        .choice.active img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            max-height: 150px; /* Limit the height to fit inside the box */
+            object-fit: contain;
+        }
+
+
+        .choice.active .lid,
+        .choice.active .ribbon-horizontal,
+        .choice.active .ribbon-vertical {
+            display: none;
+        }
+
+        .choice.hidden {
+            display: none;
+        }
+
+        .confetti-container {
+            perspective: 700px;
+            position: absolute;
+            overflow: hidden;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: none;
+            z-index: 5;
+        }
+
+        .confetti {
+            position: absolute;
+            z-index: 1;
+            top: -10px;
+            border-radius: 0%;
+        }
+
+        .confetti--animation-slow {
+            animation: confetti-slow 4s linear 1 forwards;
+        }
+
+        .confetti--animation-medium {
+            animation: confetti-medium 4s linear 1 forwards;
+        }
+
+        .confetti--animation-fast {
+            animation: confetti-fast 4s linear 1 forwards;
+        }
+
+        @keyframes confetti-slow {
+            0% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0); }
+            100% { transform: translate3d(25px, 105vh, 0) rotateX(360deg) rotateY(180deg); }
+        }
+
+        @keyframes confetti-medium {
+            0% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0); }
+            100% { transform: translate3d(100px, 105vh, 0) rotateX(100deg) rotateY(360deg); }
+        }
+
+        @keyframes confetti-fast {
+            0% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0); }
+            100% { transform: translate3d(-50px, 105vh, 0) rotateX(10deg) rotateY(250deg); }
+        }
+
+        #carera {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 1.8rem;
+            font-family: 'Chewy', cursive;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+        }
+
+        #carera::before {
+            content: 'CARERA 2024';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            color: #FF4500;
+            z-index: -1;
+        }
+
+        .close-btn {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color: #FF8C42;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            z-index: 12;
+            position: relative;
+        }
+
+        .close-btn:hover {
+            background-color: #FF7A2F;
+        }
+    </style>
+</head>
+<body>
+    <div class="js-container">
+        <div class="mystery-box">
+            <div class="title">Choose a Mystery Gift</div>
+            <div class="choices" id="choices-container">
+                <!-- The 5 choice boxes will be dynamically generated here -->
+            </div>
+        </div>
+        <button class="close-btn" onclick="closeMystery()">Close</button>
+        <div class="confetti-container"></div>
+    </div>
+
+    <div id="carera">WELCOME VISITORS <i>to</i><div></div> HTC OPEN HOUSE 2024</div>
+
+    <script src="confetti.js"></script>
+    <script>
+        // Function to shuffle an array
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Sticker images
+        const stickers = [
+            'sticker/1.PNG', 'sticker/2.PNG', 'sticker/3.PNG', 'sticker/4.PNG', 'sticker/5.PNG',
+            'sticker/6.PNG', 'sticker/7.PNG', 'sticker/8.PNG', 'sticker/9.PNG', 'sticker/10.PNG',
+            'sticker/11.PNG', 'sticker/12.PNG', 'sticker/13.PNG', 'sticker/14.PNG', 'sticker/15.PNG',
+            'sticker/16.PNG', 'sticker/17.PNG', 'sticker/18.PNG', 'sticker/19.PNG', 'sticker/20.PNG',
+            'sticker/21.PNG', 'sticker/22.PNG'
+        ];
+
+        // Shuffle the stickers and select the first 5
+        const selectedStickers = shuffle(stickers).slice(0, 5);
+
+        // Generate the choice boxes with the selected stickers
+        const choicesContainer = document.getElementById('choices-container');
+        selectedStickers.forEach((sticker, index) => {
+            const choiceDiv = document.createElement('div');
+            choiceDiv.className = 'choice';
+            choiceDiv.innerHTML = `
+                <div class="lid"></div>
+                <div class="ribbon-horizontal"></div>
+                <div class="ribbon-vertical"></div>
+                <img src="${sticker}" alt="Mystery ${index + 1}">
+            `;
+            choiceDiv.setAttribute('onclick', 'revealGift(this)');
+            choicesContainer.appendChild(choiceDiv);
+        });
+
+        function revealGift(choice) {
+            // Hide all other boxes
+            const choices = document.querySelectorAll('.choice');
+            choices.forEach((item) => {
+                if (item !== choice) {
+                    item.remove(); // Remove all other boxes from the DOM
+                }
+            });
+
+            // Reveal the selected box's content
+            choice.classList.add('active');
+
+            // Change the title to "Congratulations!"
+            const title = document.querySelector('.title');
+            title.textContent = 'Congratulations!';
+
+            // Start confetti
+            startConfetti();
+
+            // Show the close button
+            const closeBtn = document.querySelector('.close-btn');
+            closeBtn.style.display = 'block';
+        }
+
+        function closeMystery() {
+            // Reload the page to reset the game
+            location.reload();
+        }
+    </script>
+</body>
+</html>

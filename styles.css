@@ -1,0 +1,219 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #FF6347, #228B22); /* Christmas-themed gradient */
+    color: black;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+#header {
+    background-color: white;
+    padding: 10px;
+    width: 80%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#header img {
+    height: 60px;
+    margin: 0 10px;
+}
+
+#header-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #FF4500;
+}
+
+#quiz-container {
+    background-color: #FFF8DC;
+    width: 80%;
+    max-width: 900px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    display: none;
+    position: relative;
+}
+
+#title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #FF4500;
+}
+
+#subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+#countdown {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: black;
+}
+
+#question-container, #answer-container {
+    display: none;
+    color: black;
+}
+
+#question, #answer {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+#submit-btn, #won-btn, #lose-btn, #next-btn {  /* Add #next-btn here */
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    background-color: #FF8C42;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#submit-btn:hover, #won-btn:hover, #lose-btn:hover, #next-btn:hover {  /* Include #next-btn in hover */
+    background-color: #FF7A2F;
+}
+
+#close-btn {
+    font-size: 1rem;
+    padding: 8px 16px;
+    background-color: #FF8C42;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+
+#close-btn:hover {
+    background-color: #FF7A2F;
+}
+
+#input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    width: 80%;
+    max-width: 900px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+#number-input {
+    font-size: 1.5rem;
+    padding: 10px;
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    color: #FF4500;
+}
+
+#carera {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 1.8rem;
+    font-family: 'Chewy', cursive;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+#carera::before {
+    content: 'CARERA 2024';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    color: #FF4500;
+    z-index: -1;
+}
+
+
+/* Winner container styles */
+.winner-container {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+/* Winner heading style */
+.winner-container h2 {
+    font-size: 2rem;
+    color: #FF4500;
+    margin-bottom: 20px;
+    font-family: 'Chewy', cursive;
+}
+
+/* Paragraph style in winner container */
+.winner-container p {
+    font-size: 1.2rem;
+    color: black;
+    margin-bottom: 20px;
+}
+
+/* Input styles */
+input {
+    display: block;
+    width: calc(100% - 20px);
+    margin: 10px auto;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button styles 
+button {
+    padding: 12px 20px;
+    background-color: #FF8C42;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    width: calc(100% - 20px);
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #FF7A2F;
+}*/

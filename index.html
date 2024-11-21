@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CETE Quiz Game</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header">
+        <img src="cete-logo.png" alt="CETE Logo">
+        <div id="header-title">COLLEGE OF ENGINEERING AND TECHNOLOGY EDUCATION</div>
+        <img src="htc.png" alt="CETE Logo">
+    </div>
+
+    <div id="quiz-container">
+        <div id="question-container">
+            <div id="question"></div>
+            <div id="countdown">10</div>
+        </div>
+        <div id="answer-container">
+            <div id="answer"></div>
+            <button id="won-btn" style="display:none;">Won</button>
+            <button id="lose-btn" style="display:none;">Lose</button>
+        </div>
+    </div>
+
+    <div id="input-container">
+        <div id="title">Quiz Game</div>
+        <div id="subtitle">Direction: Please Choose one from number 1 to 50.</div>
+        <input type="number" id="number-input" placeholder="1-50">
+        <button id="submit-btn">Submit</button>
+    </div>
+
+    <div id="carera">WELCOME VISITORS <i>to</i><div></div> HTC OPEN HOUSE 2024</div>
+
+    <script src="qanda.js"></script>
+</body>
+</html>

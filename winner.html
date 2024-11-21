@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winner Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <!-- Link to your external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="winner-container">
+        <h2>Congratulations!</h2>
+        <p>Please fill in your details:</p>
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="text" id="course" placeholder="Your Course" required>
+        <input type="text" id="year" placeholder="Year Level" required>
+        <!-- Change the button ID to match the CSS selector -->
+        <button id="submit-btn">Next</button>
+    </div>
+
+    <div id="carera">WELCOME VISITORS <i>to</i><div></div> HTC OPEN HOUSE 2024</div>
+
+    <script>
+        document.getElementById('submit-btn').addEventListener('click', async () => {
+            const name = document.getElementById('name').value.trim();
+            const course = document.getElementById('course').value.trim();
+            const year = document.getElementById('year').value.trim();
+
+            if (name && course && year) {
+                const winnerDetails = {
+                    name,
+                    course,
+                    year,
+                    timestamp: new Date().toISOString()
+                };
+
+                try {
+                    const response = await fetch('http://localhost:3000/save-winner', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(winnerDetails)
+                    });
+
+                    if (response.ok) {
+                        window.location.href = 'mysterybox.html';
+                    } else {
+                        const errorMessage = await response.text();
+                        alert(`Error saving your details: ${errorMessage}`);
+                    }
+                } catch (error) {
+                    console.error('Error during fetch:', error);
+                    alert('Error saving your details. Please try again.');
+                }
+            } else {
+                alert("Please fill in all the fields.");
+            }
+        });
+    </script>
+</body>
+</html>
