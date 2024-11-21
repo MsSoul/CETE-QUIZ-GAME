@@ -106,7 +106,7 @@ const showQuestion = (question) => {
                     <img 
                         src="${question.image}" 
                         alt="Logo" 
-                        style="width: 150px; height: 150px; object-fit: contain;" 
+                        style="width: 100px; height: 100px; object-fit: contain;" 
                         onerror="this.src='logo/default.png';"
                     >
                 </div>
@@ -116,6 +116,7 @@ const showQuestion = (question) => {
     }
     document.getElementById('question-container').style.display = 'block';
 };
+
 
 const showAnswer = (answer) => {
     document.getElementById('question-container').style.display = 'none';
